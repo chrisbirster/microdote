@@ -1,3 +1,5 @@
+"use server";
+
 import { createClient } from "@libsql/client";
 import { serverEnv } from "~/env/server";
 
