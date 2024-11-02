@@ -8,6 +8,7 @@ import { FooterSection } from "~/components/footer-section";
 import { Navbar } from "~/components/navbar";
 
 const Home: VoidComponent = () => {
+  console.log("env: ", process.env);
   return (
     <>
       <Navbar />
