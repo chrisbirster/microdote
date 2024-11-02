@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "./db";
-import type { Task } from "../../types";
+import type { Task } from "../types";
 
 // Helper function to safely convert BigInt to Number
 const bigIntToNumber = (value: BigInt): number => {

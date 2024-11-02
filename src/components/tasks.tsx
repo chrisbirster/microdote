@@ -9,7 +9,7 @@ import {
   deleteTaskById,
   getAllTasks,
   updateTask,
-} from "~/routes/api/server";
+} from "~/server/api";
 
 type TaskProps = {
   user: User;
