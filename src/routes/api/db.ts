@@ -1,5 +1,3 @@
-"use server";
-
 import { createClient } from "@libsql/client";
 
 export const db = createClient({
