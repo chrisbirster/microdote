@@ -46,14 +46,6 @@ const GapTimer = (props: any) => {
       gapTimes.sort((a, b) => b - a); // Sort in descending order
       setGaps(gapTimes);
     }
-
-    gapTimes.forEach((time, index) => {
-      const minutes = Math.floor(time / 60);
-      const seconds = time % 60;
-      console.log(
-        `Gap ${index + 1}: ${minutes}:${seconds.toString().padStart(2, "0")} (${time}s)`,
-      );
-    });
   }
 
   // Format time as MM:SS

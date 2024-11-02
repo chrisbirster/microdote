@@ -21,7 +21,6 @@ export const Tasks = ({ user }: TaskProps) => {
   const fetchTasks = async (email: string) => {
     try {
       const fetchedTasks = await getAllTasks(email);
-      console.log("fetchedTasks: ", fetchedTasks);
       setTasks(fetchedTasks);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -57,10 +56,8 @@ export const Tasks = ({ user }: TaskProps) => {
   };
 
   const deleteTask = async (id: number) => {
-    console.log("deleteing task id: ", id);
     try {
-      const result = await deleteTaskById(id);
-      console.log("deleteing task result: ", result);
+      await deleteTaskById(id);
       setTasks((prev) => prev.filter((t) => t.id !== id));
     } catch (err) {
       console.error("Error deleting task:", err);
