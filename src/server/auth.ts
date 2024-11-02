@@ -8,6 +8,8 @@ declare module "@auth/core/types" {
   }
 }
 
+console.log(serverEnv);
+
 export const authOptions: SolidAuthConfig = {
   providers: [
     Google({

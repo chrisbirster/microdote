@@ -3,7 +3,6 @@ import { clientOnly } from "@solidjs/start";
 const ClientOnlyComp = clientOnly(() => import("../components/timer"));
 import { useAuth } from "@solid-mediakit/auth/client";
 import { Navbar } from "~/components/navbar";
-import { FooterSection } from "~/components/footer-section";
 
 const TimerPage: VoidComponent = () => {
   const auth = useAuth();
