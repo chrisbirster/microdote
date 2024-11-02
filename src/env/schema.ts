@@ -14,8 +14,6 @@ export const serverScheme = z.object({
 });
 
 export const clientScheme = z.object({
-  DB_URL: z.string(),
-  DB_TOKEN: z.string(),
   MODE: z.enum(["development", "production", "test"]).default("development"),
   VITE_AUTH_PATH: z.string().optional(),
 });

@@ -1,6 +1,5 @@
 "use server";
-
-import { getRequestEvent } from "solid-js/web";
+import db from "./db";
 import type { Task } from "../types";
 
 // Helper function to safely convert BigInt to Number
@@ -13,8 +12,6 @@ const bigIntToNumber = (value: BigInt): number => {
 };
 
 export const getAllTasks = async (email: string): Promise<Task[]> => {
-  const event = getRequestEvent();
-  const db = event?.locals.db;
   const result = await db.execute({
     sql: `SELECT id, text, completed FROM tasks WHERE email = ? ORDER BY id DESC;`,
     args: [email],
@@ -31,8 +28,6 @@ export const createTask = async (
   text: string,
   email: string,
 ): Promise<Task> => {
-  const event = getRequestEvent();
-  const db = event?.locals.db;
   const result = await db.execute({
     sql: `INSERT INTO tasks (text, completed, email) VALUES (?, ?, ?);`,
     args: [text, false, email],
@@ -51,8 +46,6 @@ export const updateTask = async (
   id: number,
   completed: boolean,
 ): Promise<void> => {
-  const event = getRequestEvent();
-  const db = event?.locals.db;
   await db.execute({
     sql: `UPDATE tasks SET completed = ? WHERE id = ?;`,
     args: [completed, id],
@@ -60,8 +53,6 @@ export const updateTask = async (
 };
 
 export const deleteTaskById = async (id: number): Promise<void> => {
-  const event = getRequestEvent();
-  const db = event?.locals.db;
   await db.execute({
     sql: `DELETE FROM tasks WHERE id = ?;`,
     args: [id],
