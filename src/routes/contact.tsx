@@ -6,7 +6,7 @@ export default function Contact() {
       <Navbar />
       <div class="pt-16 flex items-center justify-center">
         <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLScVEpgKmEBiByAajbov5zYDb8Z74AEng0WDQEGJwoY_u0ga0Q/viewform?embedded=true"
+          src={process.env.CONTACT_LINK ?? ""}
           width="640"
           height="1013"
           frameborder="0"
