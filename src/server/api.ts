@@ -1,18 +1,19 @@
-"use server";
 import db from "./db";
 import type { Task } from "../types";
 
 // Helper function to safely convert BigInt to Number
-const bigIntToNumber = (value: BigInt): number => {
+function bigIntToNumber(value: BigInt): number {
+  "use server";
   const num = Number(value);
   if (!Number.isSafeInteger(num)) {
     throw new Error(`Value ${value} exceeds Number.MAX_SAFE_INTEGER`);
   }
   return num;
-};
+}
 
-export const getAllTasks = async (email: string): Promise<Task[]> => {
-  const result = await db.execute({
+export async function getAllTasks(email: string): Promise<Task[]> {
+  "use server";
+  const result = await db().execute({
     sql: `SELECT id, text, completed FROM tasks WHERE email = ? ORDER BY id DESC;`,
     args: [email],
   });
@@ -22,13 +23,11 @@ export const getAllTasks = async (email: string): Promise<Task[]> => {
     text: row.text,
     completed: Boolean(row.completed),
   }));
-};
+}
 
-export const createTask = async (
-  text: string,
-  email: string,
-): Promise<Task> => {
-  const result = await db.execute({
+export async function createTask(text: string, email: string): Promise<Task> {
+  "use server";
+  const result = await db().execute({
     sql: `INSERT INTO tasks (text, completed, email) VALUES (?, ?, ?);`,
     args: [text, false, email],
   });
@@ -40,21 +39,23 @@ export const createTask = async (
     email,
   };
   return data;
-};
+}
 
-export const updateTask = async (
+export async function updateTask(
   id: number,
   completed: boolean,
-): Promise<void> => {
-  await db.execute({
+): Promise<void> {
+  "use server";
+  await db().execute({
     sql: `UPDATE tasks SET completed = ? WHERE id = ?;`,
     args: [completed, id],
   });
-};
+}
 
-export const deleteTaskById = async (id: number): Promise<void> => {
-  await db.execute({
+export async function deleteTaskById(id: number): Promise<void> {
+  "use server";
+  await db().execute({
     sql: `DELETE FROM tasks WHERE id = ?;`,
     args: [id],
   });
-};
+}
