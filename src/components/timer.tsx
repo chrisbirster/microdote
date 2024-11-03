@@ -113,7 +113,7 @@ const GapTimer = (props: any) => {
     if (isPaused()) {
       setIsPaused(false);
       if (!intervalId) {
-        intervalId = setInterval(updateTimer, 300);
+        intervalId = setInterval(updateTimer, 1000);
       }
     }
   };
